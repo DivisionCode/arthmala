@@ -1,18 +1,22 @@
 <template>
   <div class="main">
-    <!-- <nav class="flex gap-4 p-4 bg-white shadow">
-      <RouterLink to="/" class="hover:underline">Home</RouterLink>
-      <RouterLink to="/about" class="hover:underline">About</RouterLink>
-      <RouterLink to="/products" class="hover:underline">Products</RouterLink>
-    </nav> -->
-    <router-view/>
+    <ErrorBoundary>
+      <router-view />
+    </ErrorBoundary>
+    <template v-if="showPublicChrome">
+      <InquiryDrawer />
+      <FloatingActions />
+    </template>
   </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import InquiryDrawer from '@/components/InquiryDrawer.vue';
+import FloatingActions from '@/components/FloatingActions.vue';
+import ErrorBoundary from '@/components/ErrorBoundary.vue';
+
+const route = useRoute();
+const showPublicChrome = computed(() => route.name !== 'Admin');
 </script>
-
-
-
-

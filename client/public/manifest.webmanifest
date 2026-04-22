@@ -1,0 +1,41 @@
+{
+  "name": "अर्थ Mala — Art that Heals. Patterns that Speak.",
+  "short_name": "Arth Mala",
+  "description": "A boutique studio preserving four living Indian crafts — Lipan Art, Mandala, Embroidery and Crochet.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6f0",
+  "theme_color": "#c3592b",
+  "lang": "en-IN",
+  "categories": ["shopping", "lifestyle", "art"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "180x180",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Browse the Collection",
+      "short_name": "Collection",
+      "url": "/products",
+      "description": "See all handcrafted pieces"
+    },
+    {
+      "name": "Start an Inquiry",
+      "short_name": "Inquire",
+      "url": "/portfolio",
+      "description": "Commission a piece"
+    }
+  ]
+}

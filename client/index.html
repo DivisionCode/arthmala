@@ -2,9 +2,82 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
+    <meta name="theme-color" content="#c3592b" />
+
+    <title>अर्थ Mala — Art that Heals. Patterns that Speak.</title>
+    <meta
+      name="description"
+      content="A boutique studio preserving four living Indian crafts — Lipan Art, Mandala, Embroidery and Crochet. Every piece made by hand, on commission."
+    />
+
+    <!-- Icons + PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Arth Mala" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="अर्थ Mala" />
+    <meta property="og:title" content="अर्थ Mala — Art that Heals. Patterns that Speak." />
+    <meta
+      property="og:description"
+      content="A boutique studio preserving four living Indian crafts — Lipan Art, Mandala, Embroidery and Crochet."
+    />
+    <meta property="og:image" content="/og-card.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="अर्थ Mala — Art that Heals. Patterns that Speak." />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="अर्थ Mala — Art that Heals. Patterns that Speak." />
+    <meta name="twitter:description" content="Handcrafted Indian art. Made to order." />
+    <meta name="twitter:image" content="/og-card.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap"
+    />
+
+    <!-- Preload hero background -->
+    <link rel="preload" as="image" href="/images/bg.webp" />
+
+    <!-- Structured data (Organization + WebSite) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://arthmala.com/#organization",
+            "name": "अर्थ Mala",
+            "alternateName": "Arth Mala",
+            "url": "https://arthmala.com/",
+            "logo": "https://arthmala.com/apple-touch-icon.svg",
+            "description": "A boutique studio preserving four living Indian crafts — Lipan Art, Mandala, Embroidery and Crochet. Every piece made by hand, on commission.",
+            "slogan": "Art that Heals. Patterns that Speak.",
+            "knowsAbout": ["Lipan Art", "Mandala", "Embroidery", "Crochet Art", "Indian handicraft"],
+            "areaServed": "IN"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://arthmala.com/#website",
+            "url": "https://arthmala.com/",
+            "name": "अर्थ Mala",
+            "inLanguage": "en-IN",
+            "publisher": { "@id": "https://arthmala.com/#organization" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>

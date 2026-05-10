@@ -11,6 +11,7 @@ import inquiryRoutes from './routes/inquiryRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import { sitemap, robots } from './controllers/seoController.js';
 
 dotenv.config();
@@ -69,6 +70,7 @@ app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/uploads', uploadRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/auth', authRoutes);
 
 app.use((req, res) => res.status(404).json({ error: 'Not Found' }));
 app.use((err, req, res, next) => {

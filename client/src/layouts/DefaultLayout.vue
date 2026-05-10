@@ -39,6 +39,13 @@
         <RouterLink class="routerLink" to="/" @click="mobileOpen = false">Home</RouterLink>
         <RouterLink class="routerLink" to="/products" @click="mobileOpen = false">Products</RouterLink>
         <RouterLink class="routerLink" to="/about" @click="mobileOpen = false">About</RouterLink>
+        <RouterLink 
+          class="routerLink" 
+          to="/login" 
+          @click="mobileOpen = false"
+        >
+          {{ authStore.token ? 'Account' : 'Login' }}
+        </RouterLink>
       </div>
     </nav>
     <main class="p-6">
@@ -53,7 +60,9 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { RouterLink } from 'vue-router';
 import SiteFooter from '@/components/SiteFooter.vue';
+import { useAuthStore } from '@/stores/authStore';
 
+const authStore = useAuthStore();
 const mobileOpen = ref(false);
 const scrolled = ref(false);
 const route = useRoute();

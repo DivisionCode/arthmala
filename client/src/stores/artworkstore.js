@@ -11,7 +11,7 @@ export const useArtworkStore = defineStore('artworkStore', () => {
     loading.value = true;
     error.value = null;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/artworks`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/artworks`);
       if (!res.ok) throw new Error(`Server responded ${res.status}`);
       artworks.value = await res.json();
     } catch (err) {

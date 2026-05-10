@@ -283,7 +283,7 @@ async function loadArtwork() {
   }
 
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/artworks/${id}`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/artworks/${id}`);
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
       throw new Error(data.error || `Server responded ${res.status}`);

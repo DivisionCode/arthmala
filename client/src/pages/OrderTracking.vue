@@ -194,7 +194,7 @@ async function load() {
   error.value = null;
   try {
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/orders/${encodeURIComponent(token)}`
+      `${import.meta.env.VITE_API_URL || ''}/api/orders/${encodeURIComponent(token)}`
     );
     if (res.status === 404) {
       error.value = 'notfound';

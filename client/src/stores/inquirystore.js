@@ -95,7 +95,7 @@ export const useInquiryStore = defineStore('inquiryStore', () => {
     lastError.value = null;
     lastSuccess.value = null;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/inquiries`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...contact, items: items.value }),

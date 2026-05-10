@@ -78,7 +78,7 @@ import AdminInquiries from './admin/AdminInquiries.vue';
 import AdminProducts from './admin/AdminProducts.vue';
 
 const TOKEN_KEY = 'arthmala_admin_token';
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || '';
 
 const token = ref(localStorage.getItem(TOKEN_KEY) || '');
 const pendingToken = ref('');

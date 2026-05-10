@@ -367,7 +367,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['unauthorized']);
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || '';
 
 const inquiries = ref([]);
 const loading = ref(false);

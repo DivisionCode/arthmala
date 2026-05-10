@@ -1,5 +1,43 @@
 <template>
-  <div>
+  <div class="inquiries-tab">
+    <section class="inquiry-hero">
+      <div>
+        <span class="section-kicker">Inquiry desk</span>
+        <h2>Customer conversations, quotes, and order tracking.</h2>
+        <p>
+          Search every request, move customers through the pipeline, send quotes,
+          and keep internal notes in one place.
+        </p>
+      </div>
+      <button
+        class="export-btn hero-export"
+        @click="exportCsv"
+        :disabled="!filtered.length"
+        :aria-label="`Download ${filtered.length} inquir${filtered.length === 1 ? 'y' : 'ies'} as CSV`"
+      >
+        Export CSV
+      </button>
+    </section>
+
+    <div class="inquiry-stats" aria-label="Inquiry summary">
+      <div class="stat-card">
+        <span class="stat-value">{{ inquiries.length }}</span>
+        <span class="stat-label">Total</span>
+      </div>
+      <div class="stat-card hot">
+        <span class="stat-value">{{ countFor('new') }}</span>
+        <span class="stat-label">New</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ countFor('quoted') }}</span>
+        <span class="stat-label">Quoted</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ countFor('closed') }}</span>
+        <span class="stat-label">Closed</span>
+      </div>
+    </div>
+
     <div class="toolbar">
       <div class="filters">
         <button
@@ -32,19 +70,6 @@
             type="button"
           >✕</button>
         </div>
-        <button
-          class="export-btn"
-          @click="exportCsv"
-          :disabled="!filtered.length"
-          :aria-label="`Download ${filtered.length} inquir${filtered.length === 1 ? 'y' : 'ies'} as CSV`"
-        >
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Export CSV
-        </button>
       </div>
     </div>
 
@@ -1579,5 +1604,206 @@ onMounted(load);
   border-color: #c3592b;
   box-shadow: 0 0 0 2px rgba(195, 89, 43, 0.12);
   background: #fff;
+}
+
+/* ===== Redesigned inquiry workspace ===== */
+.inquiries-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inquiry-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.3rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(250, 246, 240, 0.7)),
+    radial-gradient(circle at 92% 12%, rgba(195, 89, 43, 0.12), transparent 42%);
+  border: 1px solid rgba(195, 89, 43, 0.14);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+    0 10px 28px rgba(86, 55, 34, 0.07);
+}
+.section-kicker {
+  display: inline-block;
+  color: #c3592b;
+  font-size: 0.68rem;
+  font-style: italic;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.inquiry-hero h2 {
+  margin: 0.35rem 0 0;
+  color: #1f1a17;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 350;
+  line-height: 1.15;
+}
+.inquiry-hero p {
+  max-width: 590px;
+  margin: 0.55rem 0 0;
+  color: #6b655c;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.inquiry-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+.stat-card {
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(195, 89, 43, 0.12);
+  border-radius: 7px;
+}
+.stat-card.hot {
+  border-color: rgba(195, 89, 43, 0.28);
+  background: rgba(255, 255, 255, 0.88);
+}
+.stat-value {
+  display: block;
+  color: #1f1a17;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.stat-label {
+  display: block;
+  margin-top: 0.35rem;
+  color: #6b655c;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.toolbar {
+  margin-bottom: 0;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(195, 89, 43, 0.12);
+  border-radius: 8px;
+}
+.filters {
+  gap: 0.4rem;
+}
+.chip {
+  border-radius: 6px;
+  padding: 0.55rem 0.85rem;
+  background: rgba(255, 255, 255, 0.72);
+}
+.chip.active {
+  background: #fff;
+  color: #1f1a17;
+  border-color: rgba(195, 89, 43, 0.2);
+  box-shadow: 0 4px 14px rgba(86, 55, 34, 0.08);
+}
+.search {
+  min-height: 42px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.84);
+}
+.export-btn {
+  min-height: 42px;
+  border-radius: 5px;
+  background: #fff;
+}
+.hero-export {
+  flex-shrink: 0;
+  color: #c3592b;
+}
+.search-scope {
+  margin: 0;
+  border-radius: 6px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 0.9rem;
+}
+.inq {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62),
+    0 8px 22px rgba(75, 48, 30, 0.05);
+}
+.inq-top {
+  align-items: flex-start;
+  gap: 1rem;
+}
+.inq-name {
+  font-size: 1.15rem;
+}
+.inq-meta,
+.inq-time {
+  line-height: 1.6;
+}
+.status-select {
+  min-width: 132px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+.inq-msg {
+  border-radius: 7px;
+  background: rgba(250, 246, 240, 0.78);
+}
+.inq-item {
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.64);
+}
+.inq-actions {
+  margin-top: auto;
+  padding-top: 0.9rem;
+}
+.order-section,
+.quote-form,
+.quoted-summary,
+.notes-section {
+  border-radius: 7px;
+}
+
+@media (max-width: 920px) {
+  .inquiry-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .inquiry-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hero-export {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+  .toolbar-actions,
+  .search {
+    width: 100%;
+  }
+  .search {
+    min-width: 0;
+  }
+  .stat-card {
+    padding: 0.75rem 0.65rem;
+  }
+  .stat-value {
+    font-size: 1.15rem;
+  }
+  .stat-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
 }
 </style>

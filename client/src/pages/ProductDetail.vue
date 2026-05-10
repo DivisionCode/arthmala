@@ -752,4 +752,32 @@ watch(() => route.params.id, loadArtwork);
   }
   .title { font-size: 1.75rem; }
 }
+
+@media (max-width: 560px) {
+  .detail-page {
+    padding: 1rem 1rem 3rem;
+  }
+  .breadcrumb {
+    font-size: 0.78rem;
+  }
+  .image-wrap {
+    min-height: 260px;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .actions .btn-primary,
+  .actions .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+  .meta-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

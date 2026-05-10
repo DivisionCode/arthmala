@@ -494,4 +494,39 @@ onMounted(() => {
   height: 30px;
   border-radius: 2px;
 }
+
+@media (max-width: 640px) {
+  .product-page {
+    padding: 1.25rem 1rem 3rem;
+  }
+  .page-head {
+    margin-bottom: 1.75rem;
+  }
+  .sort-bar {
+    justify-content: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .sort-select {
+    width: 100%;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .card-image img,
+  .card-image .sk-img {
+    height: auto;
+    min-height: 220px;
+    max-height: 320px;
+  }
+  .card-foot {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .add-btn {
+    width: 100%;
+  }
+}
 </style>

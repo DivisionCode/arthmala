@@ -1119,4 +1119,25 @@ onBeforeUnmount(() => {
   .pull-quote { margin-top: 2.5rem; }
   .quote-mark { font-size: 5rem; top: -28px; }
 }
+
+@media (max-width: 420px) {
+  .hero-cta,
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-cta .btn-primary,
+  .hero-cta .btn-ghost,
+  .cta-actions .btn-primary,
+  .cta-actions .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+  .latest-grid {
+    grid-template-columns: 1fr;
+  }
+  .latest-frame img {
+    height: 15em;
+  }
+}
 </style>

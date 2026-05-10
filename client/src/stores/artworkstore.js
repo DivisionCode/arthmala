@@ -6,8 +6,8 @@ export const useArtworkStore = defineStore('artworkStore', () => {
   const loading = ref(false);
   const error = ref(null);
 
-  async function fetchArtworks() {
-    if (artworks.value.length > 0) return;
+  async function fetchArtworks({ force = false } = {}) {
+    if (!force && artworks.value.length > 0) return;
     loading.value = true;
     error.value = null;
     try {
@@ -22,5 +22,33 @@ export const useArtworkStore = defineStore('artworkStore', () => {
     }
   }
 
-  return { artworks, loading, error, fetchArtworks };
+  function setArtworks(next) {
+    artworks.value = Array.isArray(next) ? next : [];
+  }
+
+  function upsertArtwork(artwork) {
+    if (!artwork?._id) return;
+    const idx = artworks.value.findIndex((item) => item._id === artwork._id);
+    if (idx === -1) {
+      artworks.value = [artwork, ...artworks.value];
+      return;
+    }
+    const next = [...artworks.value];
+    next[idx] = artwork;
+    artworks.value = next;
+  }
+
+  function removeArtwork(id) {
+    artworks.value = artworks.value.filter((item) => item._id !== id);
+  }
+
+  return {
+    artworks,
+    loading,
+    error,
+    fetchArtworks,
+    setArtworks,
+    upsertArtwork,
+    removeArtwork,
+  };
 });

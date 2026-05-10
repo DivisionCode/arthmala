@@ -553,4 +553,30 @@ watch(() => route.params.token, load);
   color: #c3592b;
   transform: translateY(-1px);
 }
+
+@media (max-width: 560px) {
+  .order-page {
+    padding: 1rem 1rem 3rem;
+  }
+  .pieces-multi {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+  .details dl > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .details dd {
+    text-align: left;
+  }
+  .cta-actions {
+    flex-direction: column;
+  }
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>

@@ -134,6 +134,7 @@ function signOut() {
   font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
   font-variation-settings: 'opsz' 14, 'SOFT' 50;
   color: #1f1a17;
+  padding: 1px 0;
 }
 
 /* ===== Gate ===== */
@@ -239,19 +240,26 @@ function signOut() {
 
 /* ===== Dashboard ===== */
 .dashboard {
-  max-width: 920px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 2rem 1.5rem 4rem;
 }
 
 .dash-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 1.5rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(195, 89, 43, 0.15);
+  margin-bottom: 1rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(195, 89, 43, 0.14);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(250, 246, 240, 0.68)),
+    radial-gradient(circle at 100% 0%, rgba(195, 89, 43, 0.12), transparent 36%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+    0 10px 28px rgba(86, 55, 34, 0.07);
   flex-wrap: wrap;
 }
 .dash-eyebrow {
@@ -292,34 +300,45 @@ function signOut() {
 
 .tabs {
   display: flex;
-  gap: 2rem;
-  border-bottom: 1px solid rgba(195, 89, 43, 0.15);
-  margin-bottom: 2rem;
+  gap: 0.4rem;
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(195, 89, 43, 0.12);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow-x: auto;
 }
 .tab {
-  background: none;
+  min-height: 42px;
+  background: transparent;
   border: none;
-  padding: 0.85rem 0;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
   font-family: 'Fraunces', Georgia, serif;
   font-style: italic;
   font-variation-settings: 'opsz' 14, 'SOFT' 50;
-  font-size: 1rem;
+  font-size: 0.92rem;
   letter-spacing: 0.08em;
   color: #6b655c;
   cursor: pointer;
-  border-bottom: 1px solid transparent;
-  margin-bottom: -1px;
-  transition: all 0.25s ease;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
 }
 .tab:hover {
   color: #c3592b;
+  background: rgba(195, 89, 43, 0.05);
 }
 .tab.active {
-  color: #c3592b;
+  color: #1f1a17;
+  background: #fff;
   font-style: normal;
   font-weight: 400;
-  border-bottom-color: #c3592b;
+  box-shadow: 0 4px 14px rgba(86, 55, 34, 0.08);
+}
+
+.tab-body {
+  min-width: 0;
 }
 
 /* ===== Buttons ===== */
@@ -361,5 +380,22 @@ function signOut() {
   border-color: #c3592b;
   color: #c3592b;
   transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .dashboard {
+    padding: 1rem 0.85rem 3rem;
+  }
+  .dash-head {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+  .dash-head .btn-ghost {
+    width: 100%;
+  }
+  .tabs {
+    margin-left: -0.1rem;
+    margin-right: -0.1rem;
+  }
 }
 </style>

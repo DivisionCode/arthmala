@@ -1,5 +1,19 @@
 <template>
   <div class="overview">
+    <section class="overview-hero">
+      <div>
+        <span class="section-kicker">Studio overview</span>
+        <h2>Today’s inquiry health and sales pipeline.</h2>
+        <p>
+          Track demand, aging customer conversations, and which crafts are
+          converting into confirmed commissions.
+        </p>
+      </div>
+      <button class="refresh-btn" @click="load" :disabled="loading">
+        {{ loading ? 'Refreshing...' : 'Refresh snapshot' }}
+      </button>
+    </section>
+
     <p v-if="error" class="error-banner">{{ error }}</p>
     <div v-if="loading && !stats" class="empty">Loading…</div>
 
@@ -362,9 +376,69 @@ onMounted(load);
 .overview {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   font-family: 'Fraunces', Georgia, serif;
   font-variation-settings: 'opsz' 14, 'SOFT' 50;
+}
+
+.overview-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.3rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(250, 246, 240, 0.7)),
+    radial-gradient(circle at 92% 12%, rgba(195, 89, 43, 0.12), transparent 42%);
+  border: 1px solid rgba(195, 89, 43, 0.14);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+    0 10px 28px rgba(86, 55, 34, 0.07);
+}
+.section-kicker {
+  display: inline-block;
+  color: #c3592b;
+  font-size: 0.68rem;
+  font-style: italic;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.overview-hero h2 {
+  margin: 0.35rem 0 0;
+  color: #1f1a17;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 350;
+  line-height: 1.15;
+}
+.overview-hero p {
+  max-width: 560px;
+  margin: 0.55rem 0 0;
+  color: #6b655c;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+.refresh-btn {
+  min-height: 42px;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(195, 89, 43, 0.26);
+  border-radius: 5px;
+  background: #fff;
+  color: #c3592b;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.refresh-btn:hover:not(:disabled) {
+  background: #c3592b;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.refresh-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .error-banner {
@@ -385,20 +459,20 @@ onMounted(load);
 
 .kpis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 0.85rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 .kpi {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(195, 89, 43, 0.12);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 1.1rem 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.55),
-    0 1px 2px rgba(0, 0, 0, 0.03);
+    0 8px 22px rgba(75, 48, 30, 0.05);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .kpi:hover {
@@ -437,13 +511,13 @@ onMounted(load);
 .kpi-foot.down { color: #b3261e; font-style: normal; }
 
 .card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(195, 89, 43, 0.12);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 1.25rem 1.4rem 1.4rem;
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
-    0 1px 2px rgba(0, 0, 0, 0.03);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62),
+    0 8px 22px rgba(75, 48, 30, 0.05);
 }
 .card-head {
   display: flex;
@@ -492,9 +566,7 @@ onMounted(load);
 }
 
 /* ===== Pipeline card ===== */
-.pipeline {
-  border-left: 3px solid rgba(195, 89, 43, 0.45);
-}
+.pipeline { border-top: 3px solid rgba(195, 89, 43, 0.45); }
 .pipe-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto;
@@ -698,9 +770,7 @@ onMounted(load);
   }
 }
 
-.aging {
-  border-left: 3px solid rgba(195, 89, 43, 0.55);
-}
+.aging { border-top: 3px solid rgba(195, 89, 43, 0.55); }
 .aging-list {
   list-style: none;
   padding: 0;
@@ -902,5 +972,21 @@ onMounted(load);
 
 @media (max-width: 720px) {
   .two-col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 920px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .overview-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .refresh-btn { width: 100%; }
+}
+
+@media (max-width: 360px) {
+  .kpis { grid-template-columns: 1fr; }
 }
 </style>
